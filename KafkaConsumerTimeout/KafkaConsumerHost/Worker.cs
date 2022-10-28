@@ -39,7 +39,7 @@ public class Worker : BackgroundService
             while (!stoppingToken.IsCancellationRequested)
             {
                 var consumeResult = consumer.Consume(stoppingToken);
-                _logger.LogInformation("Message received: {message}", consumeResult.Message);
+                _logger.LogInformation("Message received: {message}", consumeResult.Message.Value);
                 await Task.Delay(TimeSpan.FromSeconds(15), stoppingToken);
                 _logger.LogInformation("About to get a Kafka exception because poll interval exceeded");
                 consumer.Commit(consumeResult);
