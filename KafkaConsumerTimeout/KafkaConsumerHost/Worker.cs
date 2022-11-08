@@ -17,6 +17,7 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        await Task.Yield();
         var timeout = (int)TimeSpan.FromSeconds(10).TotalMilliseconds;
         var consumerConfig = new ConsumerConfig(_kafkaClientConfig)
         {
